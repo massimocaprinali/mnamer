@@ -18,6 +18,7 @@ __all__ = [
 
 DEFAULT_SETTINGS = {
     "batch": False,
+    "copy": False,
     "config_dump": False,
     "config_ignore": False,
     "episode_api": ProviderType.TVMAZE,

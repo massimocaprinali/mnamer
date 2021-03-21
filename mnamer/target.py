@@ -1,7 +1,7 @@
 from datetime import date
 from os import path
 from pathlib import Path, PurePath
-from shutil import move
+from shutil import move, copy
 from typing import Dict, List, Optional, Set, Union
 
 from guessit import guessit
@@ -245,5 +245,14 @@ class Target:
         destination_path.parent.mkdir(parents=True, exist_ok=True)
         try:
             move(self.source, destination_path)
+        except OSError:  # pragma: no cover
+            raise MnamerException
+
+    def copy(self) -> None:
+        """Performs the action of copying a file."""
+        destination_path = Path(self.destination).resolve()
+        destination_path.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            copy(self.source, destination_path)
         except OSError:  # pragma: no cover
             raise MnamerException

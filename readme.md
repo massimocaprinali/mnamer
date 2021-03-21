@@ -67,6 +67,7 @@ PARAMETERS:
   --episode-api={tvdb,*tvmaze}: set episode api provider
   --episode-directory: set episode relocation directory
   --episode-format: set episode renaming format specification
+  -c, --copy: copy instead of move
 
 DIRECTIVES:
   Directives are one-off arguments that are used to perform secondary tasks

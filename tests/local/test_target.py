@@ -114,3 +114,6 @@ def test_query():
 
 def test_relocate():
     pass  # TODO
+
+def test_copy():
+    pass  # TODO

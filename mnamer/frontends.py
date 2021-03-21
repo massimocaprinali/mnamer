@@ -150,7 +150,10 @@ class Cli(Frontend):
                 )
                 continue
 
-            self._rename_and_move_file(target)
+            if self.settings.copy:
+                self._rename_and_copy_file(target)
+            else:
+                self._rename_and_move_file(target)
 
     def _announce_file(self, target: Target):
         media_type = target.metadata.media.value.title()
@@ -187,6 +190,22 @@ class Cli(Frontend):
             return
         try:
             target.relocate()
+        except MnamerException:
+            tty.msg("FAILED!", MessageType.ERROR)
+        else:
+            tty.msg("OK!", MessageType.SUCCESS)
+            self.success_count += 1
+
+    def _rename_and_copy_file(self, target: Target):
+        tty.msg(
+            f"copying to {target.destination.absolute()}",
+            MessageType.SUCCESS,
+        )
+        if self.settings.test:
+            self.success_count += 1
+            return
+        try:
+            target.copy()
         except MnamerException:
             tty.msg("FAILED!", MessageType.ERROR)
         else:

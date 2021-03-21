@@ -45,6 +45,16 @@ class SettingStore:
             help="-b, --batch: process automatically without interactive prompts",
         )(),
     )
+    copy: bool = dataclasses.field(
+        default=False,
+        metadata=SettingSpec(
+            action="store_true",
+            dest="copy",
+            flags=["--copy", "-c"],
+            group=SettingType.PARAMETER,
+            help="-c, --copy: copy files instead of move them",
+        )(),
+    )
     lower: bool = dataclasses.field(
         default=False,
         metadata=SettingSpec(
