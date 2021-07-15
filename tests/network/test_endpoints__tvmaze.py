@@ -21,6 +21,7 @@ pytestmark = [
 META = EPISODE_META["The Walking Dead"]
 EXPECTED_SHOW_KEYS = [
     "_links",
+    "dvdCountry",
     "externals",
     "genres",
     "id",
@@ -63,8 +64,6 @@ def test_tvmaze_show():
     assert result
     for expected_show_key in EXPECTED_SHOW_KEYS:
         assert expected_show_key in result
-    for actual_key in result:
-        assert actual_key in EXPECTED_SHOW_KEYS
     assert result["id"] == META["id_tvmaze"]
     assert result["name"] == META["series"]
 
@@ -97,8 +96,6 @@ def test_tvmaze_show__embed_episodes():
     assert result
     for expected_show_key in expected_show_keys:
         assert expected_show_key in result
-    for actual_key in result:
-        assert actual_key in expected_show_keys
     assert result["id"] == META["id_tvmaze"]
     assert result["name"] == META["series"]
 
@@ -111,8 +108,6 @@ def test_tvmaze_show_search__success():
     assert expected_top_level_keys == set(result)
     for expected_show_key in EXPECTED_SHOW_KEYS:
         assert expected_show_key in result["show"]
-    for actual_key in result["show"]:
-        assert actual_key in EXPECTED_SHOW_KEYS
     assert result["show"]["id"] == META["id_tvmaze"]
     assert result["show"]["name"] == META["series"]
 
@@ -127,8 +122,6 @@ def test_tvmaze_show_single_search__success():
     assert result
     for expected_show_key in EXPECTED_SHOW_KEYS:
         assert expected_show_key in result
-    for actual_key in result:
-        assert actual_key in EXPECTED_SHOW_KEYS
     assert result["id"] == META["id_tvmaze"]
     assert result["name"] == META["series"]
 
@@ -143,8 +136,6 @@ def test_tvmaze_show_lookup__idmb__success():
     assert result
     for expected_show_key in EXPECTED_SHOW_KEYS:
         assert expected_show_key in result
-    for actual_key in result:
-        assert actual_key in EXPECTED_SHOW_KEYS
     assert result["id"] == META["id_tvmaze"]
     assert result["name"] == META["series"]
 
@@ -159,8 +150,6 @@ def test_tvmaze_show_lookup__tvdb__success():
     assert result
     for expected_show_key in EXPECTED_SHOW_KEYS:
         assert expected_show_key in result
-    for actual_key in result:
-        assert actual_key in EXPECTED_SHOW_KEYS
     assert result["id"] == META["id_tvmaze"]
     assert result["name"] == META["series"]
 
