@@ -44,6 +44,16 @@ class SettingStore:
             help="-b, --batch: process automatically without interactive prompts",
         ).as_dict(),
     )
+    copy: bool = dataclasses.field(
+        default=False,
+        metadata=SettingSpec(
+            action="store_true",
+            dest="copy",
+            flags=["--copy", "-c"],
+            group=SettingType.PARAMETER,
+            help="-c, --copy: copy instead of move",
+        ).as_dict(),
+    )
     lower: bool = dataclasses.field(
         default=False,
         metadata=SettingSpec(

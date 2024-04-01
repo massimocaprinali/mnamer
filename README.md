@@ -50,6 +50,7 @@ PARAMETERS:
   arguments will take precedence.
 
   -b, --batch: process automatically without interactive prompts
+  -c, --copy: copy instead of move
   -l, --lower: rename files using lowercase characters
   -r, --recurse: search for files within nested directories
   -s, --scene: use dots in place of alphanumeric chars

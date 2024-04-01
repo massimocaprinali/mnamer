@@ -3,7 +3,7 @@ from __future__ import annotations
 import datetime as dt
 from os import path
 from pathlib import Path
-from shutil import move
+from shutil import move, copy2
 from typing import Any, ClassVar, Type
 
 from guessit import guessit  # type: ignore
@@ -244,5 +244,14 @@ class Target:
         destination_path.parent.mkdir(parents=True, exist_ok=True)
         try:
             move(str(self.source), destination_path)
+        except OSError:  # pragma: no cover
+            raise MnamerException
+
+    def copy(self) -> None:
+        """Performs the action of copying a file."""
+        destination_path = Path(self.destination).resolve()
+        destination_path.parent.mkdir(parents=True, exist_ok=True)
+        try:
+            copy2(str(self.source), destination_path)
         except OSError:  # pragma: no cover
             raise MnamerException
